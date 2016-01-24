@@ -1,0 +1,42 @@
+/* common */
+body {
+    margin:0;
+    padding:0;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+main {
+    min-height: 80vh;
+}
+
+/* Typography */
+h1, h2, h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+}
+
+h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* login form */
+.form-wrapper {
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:10vh;
+    max-width:500px;
+    padding: 40px;
+    border: 1px solid #CCC;
+    border-radius: 15px;
+}
+
+/* admin */
+.stats {
+    margin-right: auto;
+    margin-left: auto;
+    padding: 20px;
+}
+
+.stats p {
+    font-size: 32px;
+}

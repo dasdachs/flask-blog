@@ -1,0 +1,38 @@
+{% extends 'admin/admin_base.html' %}
+{% block header %}
+Posts
+{% endblock header %}
+{% block content %}
+<section>
+    <div class="container">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Title</th>
+                        <th>Created</th>
+                        <th>Modified</th>
+                        <th>Published</th>
+                        <th>Author</th>
+                        <th>Edit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for post in posts %}
+                    <tr>
+                        <th scope="row">{{ post.id }}</th>
+                        <td>{{ post.title }}</td>
+                        <td>{{ post.created.strftime('%d-%m-%Y') }}</td>
+                        <td>{{ post.modified.strftime('%d-%m-%Y') }}</td>
+                        <td>{% if post.modified %}{{ post.modified.strftime('%d-%m-%Y') }} {% else %}Draft{% endif %}</td>
+                        <td>{{ post.user.username }}</td>
+                        <td><a href="#" class="btn btn-success"><span class="fa fa-pencil"></span></a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+{% endblock content %}

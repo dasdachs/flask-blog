@@ -1,0 +1,24 @@
+{% block navbar %}
+    <nav class="nav navbar-default" role="navigation">
+        <div class="container">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#admin">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{{ url_for('admin.add_post') }}"><span class="fa fa-plus"></span></a></li>
+                <li><a href="{{ url_for('auth.logout') }}"><span class="fa fa-sign-out"></span></a></li>
+            </ul>
+            <div class="collapse navbar-collapse" id="admin">
+                <ul class="nav navbar-nav navbar-left">
+                    <li {% if page == 'index' %}class="active"{% endif %}><a href="{{ url_for('admin.dashboard') }}">Home</a></li>
+                    <li {% if page == 'posts' %}class="active"{% endif %}><a href="{{ url_for('admin.posts') }}">Posts</a></li>
+                    <li {% if page == 'users' %}class="active"{% endif %}><a href="{{ url_for('admin.users') }}">Users</a></li>
+                    <li {% if page == 'scrapers' %}class="active"{% endif %}><a href="#">Scrapers</a></li>
+                    <li {% if page == 'settings' %}class="active"{% endif %}><a href="#">Settings</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% endblock navbar %}

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Login | blog{% endblock title %}
+
+{% block navbar %}
+{% include 'inserts/header.html' %}
+{% endblock navbar %}
+
+{% block content %}
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="form-wrapper">
+                <h1 class="text-center">Login</h1>
+                <br>
+                <form method="POST" class="form">
+
+                        {{ form.hidden_tag() }}
+                    <div class="form-group">
+                        {{ form.username.label(class_='control-label') }}
+                        {{ form.username(class_='form-control') }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.password.label }} {{ form.password(class_='form-control') }}
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            {{ form.remember_me }} Remember remember ...
+                        </label>
+                     </div>
+                    <button type="submit" class="btn btn-primary btn-block">Log in</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock content %}
