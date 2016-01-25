@@ -45,6 +45,7 @@ def users():
     all_users = User.query.all()
     return render_template('admin/users.html', page='users', users=all_users)
 
+
 # The CRUD views
 # ==============
 # The Post CRUD views
@@ -56,20 +57,21 @@ def add_post():
 
     The form takes a title, the summary and the body, while the pub date is optional.
 
-    The author is retrived from the 'current_user', the flask-login extension.
+    The author is retrieved from the 'current_user', the flask-login extension proxy object.
     """
     form = AddPostForm()
     if form.validate_on_submit():
         title = form.title.data
         summary = form.summary.data
         body = form.body.data
-        if form.publish:
+        if form.publish.data:
             pub_date = form.publish.data
         else:
             pub_date = ''
         new_post = Post(title=title, summary=summary, body=body, pub_date=pub_date, user=current_user)
         db.session.add(new_post)
         db.session.commit()
+        flash('New post has ben added', 'success')
         return redirect(url_for('admin.posts'))
     return render_template('admin/add_post.html', form=form)
 
@@ -92,6 +94,17 @@ def add_user():
     return render_template('admin/add_user.html', form=form)
 
 
+@admin.route('/users/edit/<int:user_id>', methods=['GET', 'POST'])
+@login_required
+def edit_user(user_id):
+    """
+    Edits the user.
+    """
+    user = User.query.get(user_id)
+    form = AddUserForm(obj=user)
+    return render_template('admin/add_user.html', form=form)
+
+
 @admin.route('/users/delete/<int:user_id>')
 @login_required
 def delete_user(user_id):
@@ -107,5 +120,5 @@ def delete_user(user_id):
         user = User.query.get(user_id)
         db.session.delete(user)
         db.session.commit()
-        flash('User {0} successfully deleted.'.format(user.username), 'success')
+        flash('User {0} was deleted.'.format(user.username), 'success')
     return redirect(url_for('admin.users'))

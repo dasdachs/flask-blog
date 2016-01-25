@@ -42,6 +42,17 @@
     {% block navbar %}
     {% include 'inserts/navbar_admin.html' %}
     {% endblock navbar %}
+    {# use boostrap classes for flash categories #}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>{{ category|title }}!</strong> {{ message }}
+            </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
     <header>
         <h1 class="text-center">{% block header %}{% endblock header %}</h1>
         <br>
@@ -53,7 +64,9 @@
         <p class="text-center">&copy; dasdachs 2016</p>
     </footer>
     <!-- scripts -->
-    <script src="https://ajax.googsleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/vendor/moments.mini.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/vendor/bootstrap-datetimepicker.js') }}"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous">
     {% block js %}
     {% endblock js %}

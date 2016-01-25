@@ -48,4 +48,6 @@ I am not using Flask-Boostrap, but I am using Boostrap and I build my style on t
 
 The WYSIWYG editor of choice is the excellent [Medium](https://github.com/yabwe/medium-editor) editor.
 
+The other external libraries are: jQuery, [moments.js](http://momentjs.com/) (the moments + locales minified lib) and [Boostrap datetime picker](https://github.com/Eonasdan/bootstrap-datetimepicker/blob/master/src/js/bootstrap-datetimepicker.js)
+
 If you have any suggestions, wishes or just some ideas contact me.

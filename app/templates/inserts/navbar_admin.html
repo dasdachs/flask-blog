@@ -6,17 +6,17 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="{{ url_for('admin.add_post') }}"><span class="fa fa-plus"></span></a></li>
-                <li><a href="{{ url_for('auth.logout') }}"><span class="fa fa-sign-out"></span></a></li>
-            </ul>
+            <div class="navbar-header">
+                <a href="{{ url_for('admin.add_post') }}" class="btn btn-info btn-lg"><span class="fa fa-plus fa-1x"></span></a>
+            </div>
             <div class="collapse navbar-collapse" id="admin">
-                <ul class="nav navbar-nav navbar-left">
+                <ul class="nav navbar-nav navbar-right">
                     <li {% if page == 'index' %}class="active"{% endif %}><a href="{{ url_for('admin.dashboard') }}">Home</a></li>
                     <li {% if page == 'posts' %}class="active"{% endif %}><a href="{{ url_for('admin.posts') }}">Posts</a></li>
                     <li {% if page == 'users' %}class="active"{% endif %}><a href="{{ url_for('admin.users') }}">Users</a></li>
                     <li {% if page == 'scrapers' %}class="active"{% endif %}><a href="#">Scrapers</a></li>
                     <li {% if page == 'settings' %}class="active"{% endif %}><a href="#">Settings</a></li>
+                    <li><a href="{{ url_for('auth.logout') }}"><span class="fa fa-sign-out fa-2x"></span></a></li>
                 </ul>
             </div>
         </div>
