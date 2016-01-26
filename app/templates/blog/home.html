@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}das blog | I make mistakes, so you don't have to{% endblock title %
+{% block content %}
+<header>
+    <h1 class="text-center">Posts</h1>
+</header>
+<section>
+    {% for post in posts %}
+    <article>
+        <header>
+            <h3 class="text-center">{{ post.title }}</h3>
+        </header>
+        <section>
+            <p>{{ summary }}</p>
+            <p><a href="{{ post.slug }}">I demand more</a></p>
+        </section>
+    </article>
+    {% endfor %}
+</section>
+{% endblock content %}

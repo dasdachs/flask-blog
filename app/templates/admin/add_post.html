@@ -10,22 +10,70 @@
             {{ form.title(class_='form-control') }}
         </div>
         <div class="form-group">
-            {{ form.summary.label }} {{ form.summary(class_='form-control') }}
+            {{ form.summary.label }} {{ form.summary(class_='form-control', rows=3) }}
         </div>
         <div class="form-group">
-            {{ form.body.label }} {{ form.body(class_='form-control') }}
+            {{ form.body.label }}
+            <button type="button" class="btn btn-sm help" data-toggle="modal" data-target="#markdown">
+                <span class="help fa fa-question"></span>
+            </button>
+            {{ form.body(class_='form-control', only_input=True, rows=10) }}
+        </div>
+        <div class="preview">
+            <label>Preview</label>
+            {{ form.body(only_preview=True) }}
         </div>
         <div class="form-group">
-            {{ form.publish.label }} {{ form.publish(class_='form-control datetimepicker') }}
+            <div class='input-group date' id='datetimepicker'>
+                <div class="input-group-addon">
+                    <span class="fa fa-calendar"></span>
+                </div>
+                {{ form.publish(class_='form-control') }}
+            </div>
         </div>
         <button type="submit" class="btn btn-success btn-block">Save</button>
     </form>
 </div>
+
+<!-- Markdown info modal -->
+<aside>
+    <div class="modal fade" id="markdown" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">User Python's markdown syntax</h4>
+          </div>
+          <div class="modal-body">
+              <p># H1 </p>
+              <p>## H2 </p>
+              <p>> Blockquotes</p>
+              <p>>> Nested blockquotes</p>
+              <p>1. 2. ... Orderd list</p>
+              <p>* * ... Unorderd list</p>
+              <p>4 spaces of `` for code</p>
+              <p>*** for hr</p>
+              <p>[This link](http://example.net/)</p>
+              <p>*word* em</p>
+              <p>**word** strong</p>
+              <p>![Alt text](/path/to/img.jpg "Optional title")</p>
+              <p>\ to escape formating</p>
+          </div>
+        </div>
+      </div>
+    </div>
+</aside>
 {% endblock content %}
 {% block js %}
 <script type="text/javascript">
     $(function () {
-        $('.datetimepicker').datetimepicker();
+        $('#datetimepicker').datetimepicker(
+            {
+            format: 'D.M.YYYY H:mm',
+            showTodayButton: true,
+            showClear: true
+            }
+        );
     });
 </script>
 {% endblock js %}

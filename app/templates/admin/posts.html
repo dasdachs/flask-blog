@@ -23,11 +23,12 @@ Posts
                     <tr>
                         <th scope="row">{{ post.id }}</th>
                         <td>{{ post.title }}</td>
-                        <td>{{ post.created.strftime('%d-%m-%Y') }}</td>
-                        <td>{{ post.modified.strftime('%d-%m-%Y') }}</td>
+                        <td>{% if post.modified %}{{ post.created.strftime('%d-%m-%Y') }}{% endif %}</td>
+                        <td>{% if post.modified %}{{ post.modified.strftime('%d-%m-%Y') }}{% endif %}</td>
                         <td>{% if post.modified %}{{ post.modified.strftime('%d-%m-%Y') }} {% else %}Draft{% endif %}</td>
                         <td>{{ post.user.username }}</td>
-                        <td><a href="#" class="btn btn-success"><span class="fa fa-pencil"></span></a></td>
+                        <td><a href="{{ url_for ('admin.edit_post', post_id=post.id) }}" class="btn btn-success"><span class="fa fa-pencil"></span></a></td>
+                        <td><a href="{{ url_for ('admin.delete_post', post_id=post.id) }}" class="btn btn-danger"><span class="fa fa-trash"></span></a></td>
                     </tr>
                     {% endfor %}
                 </tbody>

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}{{ post.title }}| das blog{% endblock title %
+{% block content %}
+<section>
+    <article>
+        <header>
+            <h1 class="text-center">{{ post.title }}</h1>
+        </header>
+        <section>
+        {{ post.summary }}
+        {% filter markdown %}
+        {{ post.body }}
+        {% endfilter %}
+        {% endblock content %}
+        </section>
+    </article>
+</section>

@@ -2,6 +2,7 @@
 from flask.ext.wtf import Form
 from wtforms import BooleanField, DateTimeField, StringField, PasswordField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired, Length, Email, EqualTo
+from flask_pagedown.fields import PageDownField
 
 
 class LoginForm(Form):
@@ -23,8 +24,8 @@ class AddPostForm(Form):
     """
     title = StringField('Title', validators=[DataRequired(), Length(1, 120)])
     summary = TextAreaField('Summary', validators=[DataRequired()])
-    body = TextAreaField('Body', validators=[DataRequired()])
-    publish = DateTimeField('Publish')
+    body = PageDownField('Body', validators=[DataRequired()])
+    publish = DateTimeField('Publish', format='%d.%m.%Y %H:%M')
 
 
 class AddUserForm(Form):

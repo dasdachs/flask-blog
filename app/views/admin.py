@@ -61,20 +61,51 @@ def add_post():
     """
     form = AddPostForm()
     if form.validate_on_submit():
-        title = form.title.data
-        summary = form.summary.data
-        body = form.body.data
-        if form.publish.data:
-            pub_date = form.publish.data
-        else:
-            pub_date = ''
-        new_post = Post(title=title, summary=summary, body=body, pub_date=pub_date, user=current_user)
+        new_post = Post(title=form.title.data, summary=form.summary.data,
+                        body=form.body.data, pub_date=form.publish.data,
+                        user=current_user)
         db.session.add(new_post)
         db.session.commit()
         flash('New post has ben added', 'success')
         return redirect(url_for('admin.posts'))
     return render_template('admin/add_post.html', form=form)
 
+
+@admin.route('/posts/edit/<int:post_id>', methods=['GET', 'POST'])
+@login_required
+def edit_post(post_id):
+    """
+    Edit a post.
+
+    TODO: add permissions
+    """
+    post = Post.query.get(post_id)
+    form = AddPostForm(obj=post)
+    if form.validate_on_submit():
+        post.title = form.title.data
+        post.summary = form.summary.data,
+        post.body = form.body.data
+        post.pub_date = form.publish.data
+        db.session.add(post)
+        db.session.commit()
+        flash('Your post has ben updated', 'success')
+        return redirect(url_for('admin.posts'))
+    return render_template('admin/add_post.html', form=form)
+
+
+@admin.route('/posts/delete/<int:post_id>')
+@login_required
+def delete_post(post_id):
+    """
+    Deletes the post.
+
+    TODO: add permissions
+    """
+    post = Post.query.get(post_id)
+    db.session.delete(post)
+    db.session.commit()
+    flash('Post {0} was deleted.'.format(post.title), 'success')
+    return redirect(url_for('admin.posts'))
 
 # The User CRUD views
 @admin.route('/users/add', methods=['GET', 'POST'])

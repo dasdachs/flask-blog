@@ -4,6 +4,8 @@ from flask import Flask
 from flask_debugtoolbar import DebugToolbarExtension
 from flask.ext.login import LoginManager
 from flask.ext.sqlalchemy import SQLAlchemy
+from flaskext.markdown import Markdown
+from flask_pagedown import PageDown
 
 from config import config
 
@@ -36,6 +38,9 @@ def app_factory(config_name):
     login_manager.init_app(app)
     db.init_app(app)
     toolbar.init_app(app)
+
+    Markdown(app, extensions=['footnotes'])
+    pagedown = PageDown(app)
 
     from .views.auth import auth as auth_blueprint
     app.register_blueprint(auth_blueprint)

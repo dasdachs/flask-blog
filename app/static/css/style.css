@@ -44,3 +44,20 @@ h4, h5, h6 {
 .stats p {
     font-size: 32px;
 }
+
+/* add-post */
+.help {
+    display: inline-block;
+    border-radius: 50%;
+}
+
+.preview {
+    margin-bottom: 10px;
+    background-color: #EEE;
+    min-height: 10vh;
+}
+
+code {
+    background-color: #424242;
+    color: white;
+}

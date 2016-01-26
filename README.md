@@ -46,7 +46,7 @@ For other deployment please see the respective instructions.
 
 I am not using Flask-Boostrap, but I am using Boostrap and I build my style on top of it. If you don't want to be bothered with design, just use Flask-Bootstrap and remove the custom `style.css`.
 
-The WYSIWYG editor of choice is the excellent [Medium](https://github.com/yabwe/medium-editor) editor.
+It uses the [flask-markdown](http://pythonhosted.org/Flask-Markdown/) and [flask-pagedown](https://github.com/miguelgrinberg/Flask-PageDown) extensions for editing
 
 The other external libraries are: jQuery, [moments.js](http://momentjs.com/) (the moments + locales minified lib) and [Boostrap datetime picker](https://github.com/Eonasdan/bootstrap-datetimepicker/blob/master/src/js/bootstrap-datetimepicker.js)
 
