@@ -3,6 +3,7 @@ import sys
 from subprocess import call
 
 from flask.ext.script import Manager
+from flask_migrate import MigrateCommand
 
 from app import app_factory, db
 from app.models import User
@@ -11,6 +12,8 @@ from app.models import User
 app = app_factory('development')
 manager = Manager(app)
 
+# The migrate comand
+manager.add_command('db', MigrateCommand)
 
 @manager.command
 def test():

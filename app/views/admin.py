@@ -1,7 +1,7 @@
 #!/usr/bin/env python3.4
 from flask import Blueprint, flash, render_template, redirect, url_for
-
 from flask.ext.login import current_user, login_required
+import pytz
 
 from .. import db
 from ..models import User, Post
@@ -62,8 +62,7 @@ def add_post():
     form = AddPostForm()
     if form.validate_on_submit():
         new_post = Post(title=form.title.data, summary=form.summary.data,
-                        body=form.body.data, pub_date=form.publish.data,
-                        user=current_user)
+                        body=form.body.data, pub_date=form.pub_date.data, user=current_user)
         db.session.add(new_post)
         db.session.commit()
         flash('New post has ben added', 'success')

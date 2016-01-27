@@ -92,7 +92,7 @@ class Post(db.Model):
     title = db.Column(db.String(120), nullable=False, index=True)
     created = db.Column(db.DateTime, default=datetime.datetime.now(tz=pytz.timezone(TZ)))
     modified = db.Column(db.DateTime, onupdate=datetime.datetime.now(tz=pytz.timezone(TZ)))
-    pub_date = db.Column(db.DateTime(timezone=pytz.timezone(TZ)), nullable=True)
+    pub_date = db.Column(db.DateTime, nullable=True)
     summary = db.Column(db.Text, nullable=False, index=True)
     body = db.Column(db.Text, nullable=False)
     author = db.Column(db.Integer, db.ForeignKey('users.id'))

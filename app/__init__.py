@@ -6,6 +6,7 @@ from flask.ext.login import LoginManager
 from flask.ext.sqlalchemy import SQLAlchemy
 from flaskext.markdown import Markdown
 from flask_pagedown import PageDown
+from flask_migrate import Migrate
 
 from config import config
 
@@ -15,7 +16,6 @@ db = SQLAlchemy()
 toolbar = DebugToolbarExtension()
 
 login_manager.login_view = "auth.login"
-login_manager.login_message = "You must be logged in to view this site."
 
 # App factory
 # ===========
@@ -38,6 +38,8 @@ def app_factory(config_name):
     login_manager.init_app(app)
     db.init_app(app)
     toolbar.init_app(app)
+
+    migrate = Migrate(app, db)
 
     Markdown(app, extensions=['footnotes'])
     pagedown = PageDown(app)
