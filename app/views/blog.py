@@ -8,7 +8,7 @@ from flask.ext.login import current_user
 from ..models import Post
 
 
-blog = Blueprint('blog', __name__)
+blog = Blueprint('blog', __name__, static_folder='static')
 
 
 @blog.route('/')
@@ -48,9 +48,3 @@ def links():
     The links site.
     """
     return render_template('blog/links.html', page='links')
-
-
-@blog.route('/robots.txt')
-@blog.route('/humans.txt')
-def static_from_root():
-    return send_from_directory('static', request.path[1:])

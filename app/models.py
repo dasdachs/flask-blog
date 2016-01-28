@@ -97,11 +97,11 @@ class Post(db.Model):
     body = db.Column(db.Text, nullable=False)
     author = db.Column(db.Integer, db.ForeignKey('users.id'))
 
-    def is_published(self):
+    def is_visible(self):
         """
         Checks if a post has a pub_date.
         """
-        return bool(self.pub_date)
+        return bool(self.pub_date) and self.pub_date <= datetime.datetime.now()
 
     def __repr__(self):
         """

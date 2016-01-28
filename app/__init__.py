@@ -53,4 +53,10 @@ def app_factory(config_name):
     from .views.admin import admin as admin_blueprint
     app.register_blueprint(admin_blueprint)
 
+    # If you serve robots.txt, humans.txt and sitemap.xml
+    # from your webserver, unregister (delete) this Blueprint
+    # and follow the webserver's documentation.
+    from .robots import robots as robots_blueprint
+    app.register_blueprint(robots_blueprint)
+
     return app
