@@ -1,5 +1,11 @@
 #!/usr/bin/env python3.4
-from flask import Blueprint, render_template
+import datetime
+
+from flask import Blueprint, send_from_directory, request, render_template
+
+from flask.ext.login import current_user
+
+from ..models import Post
 
 
 blog = Blueprint('blog', __name__)
@@ -9,5 +15,42 @@ blog = Blueprint('blog', __name__)
 def main():
     """
     Returns the main page of the blog with a list o recent posts.
+
+    TODO: paginate
     """
-    return render_template("base.html")
+    posts = Post.query.filter(Post.pub_date <= datetime.datetime.now()).order_by(Post.pub_date.desc())
+    return render_template("blog/home.html", posts=posts)
+
+
+@blog.route('/post/<post_title>')
+def post_view(post_title):
+    """
+    Displays a single post.
+    """
+    post = Post.query.filter_by(title=post_title).first_or_404()
+    return render_template('blog/post.html', post=post)
+
+
+# The info pages, like about and
+# TODO: make them static and add content editable
+# and use a editor like medium for this kind of pages
+@blog.route('/about')
+def about():
+    """
+    The about me page.
+    """
+    return render_template('blog/about.html', page='about')
+
+
+@blog.route('/links')
+def links():
+    """
+    The links site.
+    """
+    return render_template('blog/links.html', page='links')
+
+
+@blog.route('/robots.txt')
+@blog.route('/humans.txt')
+def static_from_root():
+    return send_from_directory('static', request.path[1:])

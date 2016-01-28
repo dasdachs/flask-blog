@@ -1,0 +1,21 @@
+{% block navbar %}
+    <nav class="nav navbar-default" role="navigation">
+        <div class="container">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#admin">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="navbar-header">
+                <h1>dasDachs's blog</h1>
+            </div>
+            <div class="collapse navbar-collapse" id="admin">
+                <ul class="nav navbar-nav navbar-right">
+                    <li {% if page == 'index' %}class="active"{% endif %}><a href="{{ url_for('blog.main') }}">Home</a></li>
+                    <li {% if page == 'about' %}class="active"{% endif %}><a href="{{ url_for('blog.about') }}">About</a></li>
+                    <li {% if page == 'links' %}class="active"{% endif %}><a href="{{ url_for('blog.links') }}">Links</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% endblock navbar %}

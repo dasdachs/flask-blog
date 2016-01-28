@@ -1,11 +1,13 @@
 #!/usr/bin/env python3.4
+import datetime
+
 from flask import Blueprint, flash, render_template, redirect, url_for
 from flask.ext.login import current_user, login_required
-import pytz
 
 from .. import db
 from ..models import User, Post
 from ..forms import AddUserForm, AddPostForm
+
 
 admin = Blueprint('admin', __name__, url_prefix='/admin')
 
@@ -61,8 +63,8 @@ def add_post():
     """
     form = AddPostForm()
     if form.validate_on_submit():
-        new_post = Post(title=form.title.data, summary=form.summary.data,
-                        body=form.body.data, pub_date=form.pub_date.data, user=current_user)
+        new_post = Post(title=form.title.data, summary=form.summary.data,body=form.body.data,
+                        created=datetime.datetime.now(), pub_date=form.pub_date.data, user=current_user)
         db.session.add(new_post)
         db.session.commit()
         flash('New post has ben added', 'success')

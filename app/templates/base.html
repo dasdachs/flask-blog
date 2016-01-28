@@ -27,6 +27,7 @@
 
     <meta name="Description" content="A blog documenting my path from 0 Python or CS knowledge to the present. Mostly it will be code snippets and solutions to problems that I encountered.">
     <meta name="keywords" content="Python, Flask, Django, Javascript, webframeworks, webdevelopment {% block keywords %}{% endblock %}">
+    <link rel="author" href="/humans.txt" />
 
     {% include 'private/google_analytics.html' %}
 
@@ -40,13 +41,6 @@
 </head>
 <body>
     {% block navbar %}
-    <nav class="nav navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <h1>Yet another Python blog</h1>
-            </div>
-        </div>
-    </nav>
     {% endblock navbar %}
     {% block content %}
     <main>

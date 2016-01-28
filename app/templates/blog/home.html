@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
-{% block title %}das blog | I make mistakes, so you don't have to{% endblock title %
+{% block title %}das blog | I make mistakes, so you don't have to{% endblock title %}
+{% include 'inserts/navbar.html' %}
 {% block content %}
 <header>
     <h1 class="text-center">Posts</h1>
@@ -12,7 +13,7 @@
         </header>
         <section>
             <p>{{ summary }}</p>
-            <p><a href="{{ post.slug }}">I demand more</a></p>
+            <p><a href="{{url_for('blog.post_view', post_title=post.title) }}">I demand more</a></p>
         </section>
     </article>
     {% endfor %}

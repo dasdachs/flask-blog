@@ -3,7 +3,13 @@
 {% block title %}Login | blog{% endblock title %}
 
 {% block navbar %}
-{% include 'inserts/header.html' %}
+<nav class="nav navbar-nav">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <h1>dasBlog</h1>
+        </div>
+    </div>
+</nav>
 {% endblock navbar %}
 
 {% block content %}
@@ -28,6 +34,15 @@
                             {{ form.remember_me }} Remember remember ...
                         </label>
                      </div>
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                        {% for message in messages %}
+                    <div>
+                        <p class="text-warning">{{ message }}</p>
+                    </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
                     <button type="submit" class="btn btn-primary btn-block">Log in</button>
                 </form>
             </div>
