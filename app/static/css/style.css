@@ -1,8 +1,15 @@
+/* COLOR SCHEME*/
+/* body: #FCD7AD  */
+/* navbar: #F6C28B */
+/* media queries are built on top of boostrap */
+
 /* common */
 body {
     margin:0;
     padding:0;
     font-family: 'Ubuntu', sans-serif;
+    font-size: 10px;
+    background-color: #FCD7AD;
 }
 
 main {
@@ -17,6 +24,15 @@ h1, h2, h3 {
 
 h4, h5, h6 {
     font-family: 'Montserrat', sans-serif;
+}
+
+p {
+    line-height: 1.4em;
+}
+
+/* footer */
+footer {
+    border-top: 1px solid #EEE;
 }
 
 /* login form */
@@ -60,4 +76,50 @@ h4, h5, h6 {
 code {
     background-color: #424242;
     color: white;
+}
+
+/* blog */
+/* navbar */
+.nav,
+.navbar-nav {
+   background-color: #F6C28B;
+   font-size: 2em;
+}
+
+/* main */
+.post-list {
+    margin: 1em auto;
+    width: 60%;
+    padding: 2em;
+}
+
+@media (max-width: 992px) {
+    .post-list {
+        width: 90%;
+    }
+}}
+
+.post,
+.post header,
+.post section,
+.post h1,
+.post p,
+.post a {
+    background-color: #FFF;
+}
+
+.post hr {
+    border-top: 1px solid #000;
+}
+
+.post h1 {
+    font-size: 3.6em;
+}
+
+.post p {
+    font-size: 2em;
+}
+
+.summary {
+    color: #555;
 }

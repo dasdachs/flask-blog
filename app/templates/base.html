@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     {% endblock css %}
 
-    <meta name="Description" content="A blog documenting my path from 0 Python or CS knowledge to the present. Mostly it will be code snippets and solutions to problems that I encountered.">
+    <meta name="description" content="A blog documenting my path from 0 Python or CS knowledge to the present. Mostly it will be code snippets and solutions to problems that I encountered.">
     <meta name="keywords" content="Python, Flask, Django, Javascript, webframeworks, webdevelopment {% block keywords %}{% endblock %}">
     <link rel="author" href="/humans.txt" />
 
@@ -42,19 +42,21 @@
 <body>
     {% block navbar %}
     {% endblock navbar %}
-    {% block content %}
+
     <main>
-
-    </main>
+    {% block content %}
     {% endblock content %}
+    </main>
 
-    <footer>
+    <footer class="container-fluid">
+        <p class="pull-left"><a href="https://twitter.com/dasdachs" target="_blank"><span class="fa fa-twitter"></span></a> <a href="https://github.com/dasdachs"  target="_blank"><span class="fa fa-github"></span></a></p>
+        <p class="pull-right">Built with:<a href="http://flask.pocoo.org/" target="_blank"> Flask</a> and many <a href="/humans.txt">more</a>.
         <p class="text-center">&copy; dasdachs 2016</p>
     </footer>
+
     <!-- scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous">
-    {% block js %}
-    {% endblock js %}
+    {% block js %}{% endblock js %}
 </body>
 </html>

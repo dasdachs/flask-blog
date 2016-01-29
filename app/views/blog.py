@@ -8,7 +8,7 @@ from flask.ext.login import current_user
 from ..models import Post
 
 
-blog = Blueprint('blog', __name__, static_folder='static')
+blog = Blueprint('blog', __name__)
 
 
 @blog.route('/')
