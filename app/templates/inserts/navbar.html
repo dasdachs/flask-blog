@@ -6,13 +6,13 @@
                 <span class="icon-bar"></span>
             </button>
             <div class="navbar-header">
-                <h1>dasDachs's blog</h1>
+                <h1>dasBlog</h1>
             </div>
             <div class="collapse navbar-collapse" id="admin">
                 <ul class="nav navbar-nav navbar-right">
-                    <li {% if page == 'index' %}class="active"{% endif %}><a href="{{ url_for('blog.main') }}">Home</a></li>
-                    <li {% if page == 'about' %}class="active"{% endif %}><a href="{{ url_for('blog.about') }}">About</a></li>
-                    <li {% if page == 'links' %}class="active"{% endif %}><a href="{{ url_for('blog.links') }}">Links</a></li>
+                    <li {% if page == 'main' %}class="active"{% endif %}><a href="{{ url_for('blog.main') }}" class="text-center">Home</a></li>
+                    <li {% if page == 'about' %}class="active"{% endif %}><a href="{{ url_for('blog.about') }}"class="text-center">About</a></li>
+                    <li {% if page == 'links' %}class="active"{% endif %}><a href="{{ url_for('blog.links') }}"class="text-center">Links</a></li>
                 </ul>
             </div>
         </div>

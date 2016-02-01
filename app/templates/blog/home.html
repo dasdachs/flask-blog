@@ -13,8 +13,7 @@
             </header>
             <section class="summary">
                 <p>{{ post.summary }}</p>
-                <p class="text-right"><a href="{{url_for('blog.post_view', post_title=post.title) }}">I demand more</a></p>
-                {% if not loop.last %}<hr>{% endif %}
+                <p class="text-left"><a href="{{url_for('blog.post_view', post_title=post.title) }}">I demand more</a></p>
             </section>
         </div>
     </article>

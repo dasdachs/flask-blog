@@ -19,7 +19,7 @@ def main():
     TODO: paginate
     """
     posts = Post.query.filter(Post.pub_date <= datetime.datetime.now()).order_by(Post.pub_date.desc())
-    return render_template("blog/home.html", posts=posts)
+    return render_template("blog/home.html", posts=posts, page='main')
 
 
 @blog.route('/post/<post_title>')

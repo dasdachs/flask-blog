@@ -108,3 +108,31 @@ class Post(db.Model):
         The representation for a  post.
         """
         return '<Entry for: {0}>'.format(self.title)
+
+
+class Page(db.Model):
+    """
+    The pages class lets you add and edit static pages, like links and about me.
+
+    The Pages class is the database model for pages.
+
+    Page:
+    ====
+    id: primary key
+    title: Str, 120, unique, index
+    text: Text
+    created: default now
+    modified: now on change
+    """
+    __tablename__ = 'Pages'
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(120), nullable=False)
+    created = db.Column(db.DateTime, default=datetime.datetime.now(tz=pytz.timezone(TZ)))
+    modified = db.Column(db.DateTime, onupdate=datetime.datetime.now(tz=pytz.timezone(TZ)))
+    text = db.Column(db.Text, nullable=False)
+
+    def __repr__(self):
+        """
+        The representation of a page instance.
+        """
+        return '<{0}>'.format(self.title)

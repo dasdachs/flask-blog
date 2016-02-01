@@ -10,12 +10,13 @@
             </div>
             <div class="collapse navbar-collapse" id="admin">
                 <ul class="nav navbar-nav navbar-right">
-                    <li {% if page == 'index' %}class="active"{% endif %}><a href="{{ url_for('admin.dashboard') }}">Home</a></li>
-                    <li {% if page == 'posts' %}class="active"{% endif %}><a href="{{ url_for('admin.posts') }}">Posts</a></li>
-                    <li {% if page == 'users' %}class="active"{% endif %}><a href="{{ url_for('admin.users') }}">Users</a></li>
-                    <li {% if page == 'scrapers' %}class="active"{% endif %}><a href="#">Scrapers</a></li>
-                    <li {% if page == 'settings' %}class="active"{% endif %}><a href="#">Settings</a></li>
-                    <li><a href="{{ url_for('auth.logout') }}"><span class="fa fa-sign-out fa-2x"></span></a></li>
+                    <li {% if page == 'index' %}class="active"{% endif %}><a href="{{ url_for('admin.dashboard') }}" class="text-center">Home</a></li>
+                    <li {% if page == 'posts' %}class="active"{% endif %}><a href="{{ url_for('admin.posts') }}" class="text-center">Posts</a></li>
+                    <li {% if page == 'pages' %}class="active"{% endif %}><a href="{{ url_for('admin.posts') }}" class="text-center">Pages</a></li>
+                    <li {% if page == 'users' %}class="active"{% endif %}><a href="{{ url_for('admin.users') }}" class="text-center">Users</a></li>
+                    <li {% if page == 'scrapers' %}class="active"{% endif %}><a href="#" class="text-center">Scrapers</a></li>
+                    <li {% if page == 'settings' %}class="active"{% endif %}><a href="#" class="text-center">Settings</a></li>
+                    <li><a href="{{ url_for('auth.logout') }}" class="text-center"><span class="fa fa-sign-out"></span></a></li>
                 </ul>
             </div>
         </div>

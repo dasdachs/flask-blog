@@ -1,22 +1,37 @@
 /* COLOR SCHEME*/
-/* body: #FCD7AD  */
-/* navbar: #F6C28B */
+/* https://coolors.co/app/ecc8af-e7ad99-ce796b-c18c5d-495867 */
+/* body: #ECC8AF  */
+/* navbar: #495867 */
+/* h1-h6: #CE796B */
+/* a: #E7AD99 */
+
+/* MEDIA QUERIES*/
 /* media queries are built on top of boostrap */
 
+
+/* CSS */
 /* common */
 body {
     margin:0;
     padding:0;
     font-family: 'Ubuntu', sans-serif;
     font-size: 10px;
-    background-color: #FCD7AD;
+    background-color: #ECC8AF;
 }
 
 main {
     min-height: 80vh;
 }
 
+nav, .nav, .nav-bar {
+    background-color: #495867;
+}
+
 /* Typography */
+h1, h2, h3, h4, h5, h6 {
+    color: #CE796B;
+}
+
 h1, h2, h3 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
@@ -30,9 +45,17 @@ p {
     line-height: 1.4em;
 }
 
+a {
+    color: #E7AD99;
+}
+
 /* footer */
 footer {
-    border-top: 1px solid #EEE;
+    border-top: 1px solid #495867;
+}
+
+footer a {
+    color: #000;
 }
 
 /* login form */
@@ -42,8 +65,6 @@ footer {
     margin-top:10vh;
     max-width:500px;
     padding: 40px;
-    border: 1px solid #CCC;
-    border-radius: 15px;
 }
 
 /* admin */
@@ -82,8 +103,12 @@ code {
 /* navbar */
 .nav,
 .navbar-nav {
-   background-color: #F6C28B;
    font-size: 2em;
+}
+
+.navbar-default .navbar-nav>.active>a {
+    background: inherit;
+    color: #FFF;
 }
 
 /* main */
@@ -97,23 +122,15 @@ code {
     .post-list {
         width: 90%;
     }
-}}
+}
 
-.post,
-.post header,
-.post section,
-.post h1,
-.post p,
-.post a {
+.post {
     background-color: #FFF;
-}
-
-.post hr {
-    border-top: 1px solid #000;
-}
-
-.post h1 {
-    font-size: 3.6em;
+    margin: 2em 0;
+    padding: 0.5em 2em;
+    -webkit-box-shadow: 5px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 5px 10px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 5px 10px 5px 0px rgba(0,0,0,0.75);
 }
 
 .post p {
@@ -123,3 +140,11 @@ code {
 .summary {
     color: #555;
 }
+
+.post a:hover {
+    color: #000;
+    text-decoration: none;
+}
+
+/* about, links ... */
+/* use .post */
