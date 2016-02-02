@@ -5,7 +5,7 @@ from flask import Blueprint, flash, render_template, redirect, url_for
 from flask.ext.login import current_user, login_required
 
 from .. import db
-from ..models import User, Post
+from ..models import User, Post, Page
 from ..forms import AddUserForm, AddPostForm
 
 
@@ -13,7 +13,7 @@ admin = Blueprint('admin', __name__, url_prefix='/admin')
 
 
 # The get methods are listed first
-# The CRUD operations for Post and User are in the second part
+# The CRUD operations for Post, Page and User are in the second part
 @admin.route('/')
 @login_required
 def dashboard():
@@ -36,6 +36,16 @@ def posts():
     """
     all_posts = Post.query.all()
     return render_template('admin/posts.html', page='posts', posts=all_posts)
+
+
+@admin.route('/pages')
+@login_required
+def pages():
+    """
+    Returns the 'static' pages, the date they were created and a link to edit them.
+    """
+    all_pages = Page.query.all()
+    return render_template('admin/pages.html', page='pages', pages=all_pages)
 
 
 @admin.route('/users/')

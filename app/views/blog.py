@@ -1,11 +1,11 @@
 #!/usr/bin/env python3.4
 import datetime
 
-from flask import Blueprint, send_from_directory, request, render_template
+from flask import Blueprint, render_template
 
 from flask.ext.login import current_user
 
-from ..models import Post
+from ..models import Post, Page
 
 
 blog = Blueprint('blog', __name__)

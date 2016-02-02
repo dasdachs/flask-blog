@@ -72,6 +72,10 @@ footer a {
     padding: 5px 0;
 }
 
+.admin-btn {
+    background-color: none;
+}
+
 .stats {
     margin-right: auto;
     margin-left: auto;
@@ -101,14 +105,23 @@ code {
 
 /* blog */
 /* navbar */
+.navbar-nav li, .navbar-nav a {
+    margin: auto 0;
+}
+
 .nav,
 .navbar-nav {
-   font-size: 2em;
+    font-size: 2em;
 }
 
 .navbar-default .navbar-nav>.active>a {
     background: inherit;
     color: #FFF;
+}
+
+.navbar-default .navbar-nav>.active>a:hover {
+    background-color: inherit;
+    color: #CCC;
 }
 
 /* main */

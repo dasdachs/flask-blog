@@ -39,3 +39,13 @@ class AddUserForm(Form):
     password = PasswordField('Password', validators=[DataRequired(),
                                                      EqualTo('confirm', message='Passwords must match')])
     confirm = PasswordField('Repeat password')
+
+
+class EditPage(Form):
+    """
+    The Post form is used for creating and editing posts.
+    """
+    title = StringField('Title', validators=[DataRequired(), Length(1, 120)])
+    summary = TextAreaField('Summary', validators=[DataRequired()])
+    body = PageDownField('Body', validators=[DataRequired()])
+    pub_date = DateTimeField('Publish', format='%d.%m.%Y %H:%M')

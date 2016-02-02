@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}das blog|{{name|title}}{% endblock title %}
+{% block navbar %}
+{% include 'inserts/navbar.html' %}
+{% endblock navbar %}
+{% block content %}
+<article class="post">
+    <header>
+        <h1 class="text-center">{{name|title}}</h1>
+    </header>
+    <section>
+        {{body}}
+    </section>
+</article>
+{% endblock content %}

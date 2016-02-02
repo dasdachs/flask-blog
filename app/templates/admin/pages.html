@@ -1,8 +1,14 @@
 {% extends 'admin/admin_base.html' %}
 {% block header %}
-Posts
+Pages
 {% endblock header %}
 {% block content %}
+<section>
+    <div class="container">
+        <a href="#" class="btn btn-primary btn-block">Add new page</a>
+    </div>
+</section>
+<br>
 <section>
     <div class="container">
         <div class="table-responsive">
@@ -13,23 +19,19 @@ Posts
                         <th>Title</th>
                         <th>Created</th>
                         <th>Modified</th>
-                        <th>Published</th>
-                        <th>Author</th>
                         <th>Edit</th>
                         <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for post in posts %}
+                    {% for page in pages %}
                     <tr>
-                        <th scope="row">{{ post.id }}</th>
-                        <td>{{ post.title }}</td>
-                        <td>{% if post.created %}{{ post.created.strftime('%d-%m-%Y') }}{% endif %}</td>
-                        <td>{% if post.modified %}{{ post.modified.strftime('%d-%m-%Y') }}{% endif %}</td>
-                        <td>{% if post.pub_date %}{{ post.pub_date.strftime('%d-%m-%Y') }} {% else %}Draft{% endif %}</td>
-                        <td>{{ post.user.username }}</td>
+                        <th scope="row">{{ page.id }}</th>
+                        <td>{{ page.title }}</td>
+                        <td>{{ page.created.strftime('%d-%m-%Y') }}</td>
+                        <td>{% if page.modified %}{{ page.modified.strftime('%d-%m-%Y') }}{% endif %}</td>
                         <td><a href="{{ url_for ('admin.edit_post', post_id=post.id) }}"><span class="fa fa-pencil fa-2x"></span></a></td>
-                        <td><a href="{{ url_for ('admin.delete_post', post_id=post.id) }}><span class="fa fa-trash fa-2x"></span></a></td>
+                        <td><a href="{{ url_for ('admin.delete_post', post_id=post.id) }}"><span class="fa fa-trash fa-2x"></span></a></td>
                     </tr>
                     {% endfor %}
                 </tbody>
