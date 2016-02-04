@@ -6,7 +6,7 @@ from flask.ext.script import Manager
 from flask_migrate import MigrateCommand
 
 from app import app_factory, db
-from app.models import User
+from app.models import User, Post, Page
 
 
 app = app_factory('development')

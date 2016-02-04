@@ -23,6 +23,7 @@ class AddPostForm(Form):
     The Post form is used for creating and editing posts.
     """
     title = StringField('Title', validators=[DataRequired(), Length(1, 120)])
+    slug = StringField('Slug', validators=[DataRequired(), Length(1, 120)])
     summary = TextAreaField('Summary', validators=[DataRequired()])
     body = PageDownField('Body', validators=[DataRequired()])
     pub_date = DateTimeField('Publish', format='%d.%m.%Y %H:%M')
@@ -41,9 +42,16 @@ class AddUserForm(Form):
     confirm = PasswordField('Repeat password')
 
 
+class AddPage(Form):
+    """
+    The
+    """
+    pass
+
+
 class EditPage(Form):
     """
-    The Post form is used for creating and editing posts.
+    The Edit page form is used for creating and editing posts.
     """
     title = StringField('Title', validators=[DataRequired(), Length(1, 120)])
     summary = TextAreaField('Summary', validators=[DataRequired()])

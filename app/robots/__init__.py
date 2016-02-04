@@ -14,7 +14,7 @@ http://stackoverflow.com/questions/4239825/static-files-in-flask-robot-txt-sitem
 """
 from flask import Blueprint, request, send_from_directory
 
-from ..utils import generate_sitemap
+from .utils import generate_sitemap
 
 
 robots = Blueprint('robots', __name__, static_folder='static')

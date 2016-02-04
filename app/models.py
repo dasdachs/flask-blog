@@ -6,6 +6,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask.ext.login import UserMixin
 
 from . import db, login_manager
+
 from config import TZ
 
 
@@ -86,6 +87,7 @@ class Post(db.Model):
     modified: now on change
     pub_date: Date, nullable
     username: Int, foreign key
+    slug: Str
     """
     __tablename__ = 'posts'
     id = db.Column(db.Integer, primary_key=True)
@@ -96,6 +98,7 @@ class Post(db.Model):
     summary = db.Column(db.Text, nullable=False, index=True)
     body = db.Column(db.Text, nullable=False)
     author = db.Column(db.Integer, db.ForeignKey('users.id'))
+    slug = db.Column(db.String(120))
 
     def is_visible(self):
         """

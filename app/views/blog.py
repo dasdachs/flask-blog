@@ -22,12 +22,12 @@ def main():
     return render_template("blog/home.html", posts=posts, page='main')
 
 
-@blog.route('/post/<post_title>')
-def post_view(post_title):
+@blog.route('/post/<post_slug>')
+def post_view(post_slug):
     """
     Displays a single post.
     """
-    post = Post.query.filter_by(title=post_title).first_or_404()
+    post = Post.query.filter_by(slug=post_slug).first_or_404()
     return render_template('blog/post.html', post=post)
 
 
@@ -39,7 +39,8 @@ def about():
     """
     The about me page.
     """
-    return render_template('blog/about.html', page='about')
+    about_page = Page.query.filter(name='about')
+    return render_template('blog/about.html', about=about_page,  page='about')
 
 
 @blog.route('/links')
@@ -47,4 +48,5 @@ def links():
     """
     The links site.
     """
-    return render_template('blog/links.html', page='links')
+    links_page = Page.query.filter(name='about')
+    return render_template('blog/about.html', links=links_page,  page='about')

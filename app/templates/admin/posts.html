@@ -24,6 +24,7 @@ Posts
                     <tr>
                         <th scope="row">{{ post.id }}</th>
                         <td>{{ post.title }}</td>
+                        <td><a href="{{post.slug}}"><span class="fa fa-link"></span></a></td>
                         <td>{% if post.created %}{{ post.created.strftime('%d-%m-%Y') }}{% endif %}</td>
                         <td>{% if post.modified %}{{ post.modified.strftime('%d-%m-%Y') }}{% endif %}</td>
                         <td>{% if post.pub_date %}{{ post.pub_date.strftime('%d-%m-%Y') }} {% else %}Draft{% endif %}</td>

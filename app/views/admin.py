@@ -7,6 +7,7 @@ from flask.ext.login import current_user, login_required
 from .. import db
 from ..models import User, Post, Page
 from ..forms import AddUserForm, AddPostForm
+from ..utils import slugify
 
 
 admin = Blueprint('admin', __name__, url_prefix='/admin')
@@ -74,7 +75,8 @@ def add_post():
     form = AddPostForm()
     if form.validate_on_submit():
         new_post = Post(title=form.title.data, summary=form.summary.data,body=form.body.data,
-                        created=datetime.datetime.now(), pub_date=form.pub_date.data, user=current_user)
+                        created=datetime.datetime.now(), pub_date=form.pub_date.data,
+                        user=current_user, slug=slugify(form.title.data))
         db.session.add(new_post)
         db.session.commit()
         flash('New post has ben added', 'success')
@@ -150,6 +152,56 @@ def edit_user(user_id):
 @admin.route('/users/delete/<int:user_id>')
 @login_required
 def delete_user(user_id):
+    """
+    Deletes the user.
+
+    The functions checks if the current_user is the user being deleted
+    and redirects him back to the users view and flashes a massage.
+    """
+    if user_id == current_user.id:
+        flash('You tried to delete yourself. That\'s some bad voodoo.', 'danger')
+    else:
+        user = User.query.get(user_id)
+        db.session.delete(user)
+        db.session.commit()
+        flash('User {0} was deleted.'.format(user.username), 'success')
+    return redirect(url_for('admin.users'))
+
+
+# The Pages CRUD view
+@admin.route('/pages/add', methods=['GET', 'POST'])
+@login_required
+def add_page():
+    """
+    The create view for pages.
+
+    Does not create the template.
+    """
+    form = AddUserForm()
+    if form.validate_on_submit():
+        user = User(username=form.username.data, email=form.email.data,
+                    password=form.password.data, is_admin=False)
+        db.session.add(user)
+        db.session.commit()
+        flash('New user has ben added', 'success')
+        return redirect(url_for('admin.users'))
+    return render_template('admin/add_user.html', form=form)
+
+
+@admin.route('/pages/edit/<int:user_id>', methods=['GET', 'POST'])
+@login_required
+def edit_page(user_id):
+    """
+    Edits the user.
+    """
+    user = User.query.get(user_id)
+    form = AddUserForm(obj=user)
+    return render_template('admin/add_user.html', form=form)
+
+
+@admin.route('/pages/delete/<int:user_id>')
+@login_required
+def delete_page(user_id):
     """
     Deletes the user.
 
