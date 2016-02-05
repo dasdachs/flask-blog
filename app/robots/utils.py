@@ -24,14 +24,14 @@ def generate_sitemap():
 
     # Static pages
     for rule in current_app.url_map.iter_rules():
-        if "GET" in rule.methods and len(rule.arguments) == 0:
+        if "GET" in rule.methods and len(rule.arguments) == 0 and "admin" not in rule.rule:
             pages.append([rule.rule, ten_days_ago])
 
     # Posts model pages
     posts = Post.query.order_by(Post.pub_date.desc())
     for post in posts:
         if post.is_visible():
-            url = url_for('blog.post_view', post_title=post.title)
+            url = url_for('blog.post_view', post_slug=post.slug)
             if post.modified:
                 modified_time = post.modified.isoformat()
             else:

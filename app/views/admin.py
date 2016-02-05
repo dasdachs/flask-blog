@@ -6,7 +6,7 @@ from flask.ext.login import current_user, login_required
 
 from .. import db
 from ..models import User, Post, Page
-from ..forms import AddUserForm, AddPostForm
+from ..forms import UserForm, PostForm
 from ..utils import slugify
 
 
@@ -72,7 +72,7 @@ def add_post():
 
     The author is retrieved from the 'current_user', the flask-login extension proxy object.
     """
-    form = AddPostForm()
+    form = PostForm()
     if form.validate_on_submit():
         new_post = Post(title=form.title.data, summary=form.summary.data,body=form.body.data,
                         created=datetime.datetime.now(), pub_date=form.pub_date.data,
@@ -92,17 +92,15 @@ def edit_post(post_id):
 
     TODO: add permissions
     """
-    post = Post.query.get(post_id)
-    form = AddPostForm(obj=post)
+    post = Post.query.get_or_404(post_id)
+    form = PostForm()
     if form.validate_on_submit():
-        post.title = form.title.data
-        post.summary = form.summary.data,
-        post.body = form.body.data
-        post.pub_date = form.publish.data
+        form.to_model(post)
         db.session.add(post)
         db.session.commit()
         flash('Your post has ben updated', 'success')
         return redirect(url_for('admin.posts'))
+    form.from_model(post)
     return render_template('admin/add_post.html', form=form)
 
 
@@ -114,11 +112,12 @@ def delete_post(post_id):
 
     TODO: add permissions
     """
-    post = Post.query.get(post_id)
+    post = Post.query.get_or_404(post_id)
     db.session.delete(post)
     db.session.commit()
     flash('Post {0} was deleted.'.format(post.title), 'success')
     return redirect(url_for('admin.posts'))
+
 
 # The User CRUD views
 @admin.route('/users/add', methods=['GET', 'POST'])
@@ -127,7 +126,7 @@ def add_user():
     """
     The create view for user
     """
-    form = AddUserForm()
+    form = UserForm()
     if form.validate_on_submit():
         user = User(username=form.username.data, email=form.email.data,
                     password=form.password.data, is_admin=False)
@@ -144,8 +143,15 @@ def edit_user(user_id):
     """
     Edits the user.
     """
-    user = User.query.get(user_id)
-    form = AddUserForm(obj=user)
+    user = User.query.get_or_404(user_id)
+    form = UserForm()
+    if form.validate_on_submit():
+        form.to_model(user)
+        db.session.add(user)
+        db.session.commit()
+        flash('Successfully updated', 'success')
+        return redirect(url_for('admin.users'))
+    form.from_model(user)
     return render_template('admin/add_user.html', form=form)
 
 
@@ -161,7 +167,7 @@ def delete_user(user_id):
     if user_id == current_user.id:
         flash('You tried to delete yourself. That\'s some bad voodoo.', 'danger')
     else:
-        user = User.query.get(user_id)
+        user = User.query.get_or_404(user_id)
         db.session.delete(user)
         db.session.commit()
         flash('User {0} was deleted.'.format(user.username), 'success')
@@ -177,7 +183,7 @@ def add_page():
 
     Does not create the template.
     """
-    form = AddUserForm()
+    form = Page()
     if form.validate_on_submit():
         user = User(username=form.username.data, email=form.email.data,
                     password=form.password.data, is_admin=False)
@@ -194,8 +200,8 @@ def edit_page(user_id):
     """
     Edits the user.
     """
-    user = User.query.get(user_id)
-    form = AddUserForm(obj=user)
+    user = User.query.get_or_404(user_id)
+    form = UserForm(obj=user)
     return render_template('admin/add_user.html', form=form)
 
 

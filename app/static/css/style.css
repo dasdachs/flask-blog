@@ -1,22 +1,26 @@
-/* COLOR SCHEME*/
-/* https://coolors.co/app/ecc8af-e7ad99-ce796b-c18c5d-495867 */
-/* body: #ECC8AF  */
-/* navbar: #495867 */
-/* h1-h6: #CE796B */
-/* a: #E7AD99 */
+/*
+ * COLOR SCHEME
+ * https://coolors.co/app/14080e-49475b-799496-acc196-e9eb9e
+ * body: #799496
+ * navbar: #49475B
+ * h1-h6: #E9EB9E
+ * a: #ACC196
+ * p: #14080E
+ */
 
-/* MEDIA QUERIES*/
-/* media queries are built on top of boostrap */
+/*
+ * MEDIA QUERIES
+ * media queries are built on top of boostrap
+ */
 
 
-/* CSS */
-/* common */
+/* COMMON */
 body {
     margin:0;
     padding:0;
     font-family: 'Ubuntu', sans-serif;
     font-size: 10px;
-    background-color: #ECC8AF;
+    background-color: #799496;
 }
 
 main {
@@ -24,12 +28,22 @@ main {
 }
 
 nav, .nav, .nav-bar {
-    background-color: #495867;
+    background-color: #49475B;
+}
+
+pre {
+    border: none;
+    border-radius: 8px;
+}
+
+pre, code {
+    background-color: #424242;
+    color: white;
 }
 
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
-    color: #CE796B;
+    color: #E9EB9E;
 }
 
 h1, h2, h3 {
@@ -43,19 +57,18 @@ h4, h5, h6 {
 
 p {
     line-height: 1.4em;
+    color: #14080E;
 }
 
 a {
-    color: #E7AD99;
+    color: #ACC196;
 }
 
 /* footer */
 footer {
+    margin-top: 1em;
+    padding: 1em auto;
     border-top: 1px solid #495867;
-}
-
-footer a {
-    color: #000;
 }
 
 /* login form */
@@ -83,24 +96,20 @@ footer a {
 }
 
 .stats p {
-    font-size: 32px;
+    font-size: 3.2em;
 }
 
 /* add-post */
 .help {
     display: inline-block;
-    border-radius: 50%;
+    background: none;
 }
 
 .preview {
     margin-bottom: 10px;
+    padding: .5em;
     background-color: #EEE;
     min-height: 10vh;
-}
-
-pre, code {
-    background-color: #424242;
-    color: white;
 }
 
 /* blog */

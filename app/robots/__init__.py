@@ -31,6 +31,7 @@ def static_from_root():
     """
     return send_from_directory(robots.static_folder, request.path[1:])
 
+
 @robots.route('/sitemap.xml')
 def sitemap_from_root():
     """
