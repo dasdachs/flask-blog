@@ -1,25 +1,29 @@
 #!/usr/bin/env python3.4
+import os
 import sys
 from subprocess import call
 
-from flask.ext.script import Manager
+from flask_script import Manager
 from flask_migrate import MigrateCommand
 
-from app import app_factory, db
-from app.models import User, Post, Page
+from config import config
+from backend import app_factory, db
+from backend.models import User, Post, Page
 
 
-app = app_factory('development')
+app = app_factory(os.getenv('FLASK_CONFIG'))
 manager = Manager(app)
 
 # The migrate comand
 manager.add_command('db', MigrateCommand)
+
 
 @manager.command
 def test():
     call(['nosetests', '-v',
           '--with-coverage', '--cover-package=app', '--cover-branches',
           '--cover-erase', '--cover-html', '--cover-html-dir=cover'])
+
 
 @manager.command
 def createsuperuser():

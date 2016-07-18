@@ -1,0 +1,28 @@
+{
+  "name": "flask-vuejs-blog",
+  "version": "0.0.0",
+  "description": "A simple blog with avue.js frontend and a flask rest api backend.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dasdachs/flask-blog.git"
+  },
+  "keywords": [
+    "vue.js",
+    "blog",
+    "flask"
+  ],
+  "author": "dasDachs",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dasdachs/flask-blog/issues"
+  },
+  "dependencies": {
+    "vue": "~1.0.26",
+    "vue-router": "~0.7.13",
+    "vue-resource": "~0.9.3"
+  }
+}

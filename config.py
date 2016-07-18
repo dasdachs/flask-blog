@@ -15,7 +15,7 @@ class Config(object):
     """
     The base class Config defines the secret key and the timezone.
     """
-    SECRET_KEY = os.environ.get('SECRET_KEY')
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
 class DevelopmentConfig(Config):

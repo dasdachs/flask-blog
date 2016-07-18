@@ -2,8 +2,8 @@
 from flask import Flask
 
 from flask_debugtoolbar import DebugToolbarExtension
-from flask.ext.login import LoginManager
-from flask.ext.sqlalchemy import SQLAlchemy
+from flask_login import LoginManager
+from flask_sqlalchemy import SQLAlchemy
 from flaskext.markdown import Markdown
 from flask_pagedown import PageDown
 from flask_migrate import Migrate

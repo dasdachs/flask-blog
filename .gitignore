@@ -66,3 +66,7 @@ target/
 
 # HTML inserts like Google analytics
 app/templates/private/
+
+
+# Node modules
+node_modules/

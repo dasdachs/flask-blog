@@ -1,5 +1,5 @@
 #!/usr/bin/env python3.4
-from flask.ext.wtf import Form
+from flask_wtf import Form
 from wtforms import BooleanField, DateTimeField, StringField, PasswordField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired, Optional, Length, Email, EqualTo
 from flask_pagedown.fields import PageDownField
