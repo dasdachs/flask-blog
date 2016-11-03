@@ -7,16 +7,14 @@ from flask_script import Manager
 from flask_migrate import MigrateCommand
 
 from config import config
-from backend import app_factory, db
-from backend.models import User, Post, Page
+from app import app_factory, db
 
 
-app = app_factory(os.getenv('FLASK_CONFIG'))
+app = app_factory('development') # TODO implement env variables
 manager = Manager(app)
 
 # The migrate comand
 manager.add_command('db', MigrateCommand)
-
 
 @manager.command
 def test():

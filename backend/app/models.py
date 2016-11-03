@@ -3,24 +3,11 @@ import datetime
 
 import pytz
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import UserMixin
 
-from . import db, login_manager
-
-from config import TZ
+from . import db
 
 
-@login_manager.user_loader
-def load_user(user_id):
-    """
-    The function required by the login extension.
-
-    Returns the User object corresponding to the id.
-    """
-    return User.query.get(int(user_id))
-
-
-class User(UserMixin, db.Model):
+class User(db.Model):
     """
     The user class is the basic user class with username, mail, a password.
 
@@ -92,8 +79,8 @@ class Post(db.Model):
     __tablename__ = 'posts'
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(120), nullable=False, index=True)
-    created = db.Column(db.DateTime, default=datetime.datetime.now(tz=pytz.timezone(TZ)))
-    modified = db.Column(db.DateTime, onupdate=datetime.datetime.now(tz=pytz.timezone(TZ)))
+    created = db.Column(db.DateTime, default=datetime.datetime.now())
+    modified = db.Column(db.DateTime, onupdate=datetime.datetime.now())
     pub_date = db.Column(db.DateTime, nullable=True)
     summary = db.Column(db.Text, nullable=False, index=True)
     body = db.Column(db.Text, nullable=False)
@@ -130,8 +117,8 @@ class Page(db.Model):
     __tablename__ = 'Pages'
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(120), nullable=False)
-    created = db.Column(db.DateTime, default=datetime.datetime.now(tz=pytz.timezone(TZ)))
-    modified = db.Column(db.DateTime, onupdate=datetime.datetime.now(tz=pytz.timezone(TZ)))
+    created = db.Column(db.DateTime, default=datetime.datetime.now())
+    modified = db.Column(db.DateTime, onupdate=datetime.datetime.now())
     text = db.Column(db.Text, nullable=False)
 
     def __repr__(self):

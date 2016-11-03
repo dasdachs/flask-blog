@@ -1,15 +1,11 @@
-#!/usr/bin/env python3.4
+"""
+The basic flask configurations for. We create a base class in subclass it
+to different configuration settings.
+"""
+#!/usr/bin/env python3.5
 import os
 
-
 basedir = os.path.abspath(os.path.dirname(__file__))
-# SETTINGS:
-# ========
-# 1. TZ
-# This app uses the pytz library for timezones.
-# For more info visit: http://pythonhosted.org/pytz/
-TZ = 'Europe/Ljubljana'
-
 
 class Config(object):
     """
@@ -23,7 +19,7 @@ class DevelopmentConfig(Config):
     DEBUG_TB_ENABLED = True
     WTF_CSRF_ENABLED = True
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'PIY8G!T@F4lH$aY0eZhRkQK1'
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or \
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') + 'flask_blog' or \
         'sqlite:///' + os.path.join(basedir, 'data.sqlite')
 
 
@@ -35,10 +31,9 @@ class TestingConfig(Config):
 
 
 class ProductionConfig(Config):
-    SECRET_KEY = os.environ.get('SECRET_KEY') or 'PIY8G!T@F4lH$aY0eZhRkQK1'
+    SECRET_KEY = os.environ.get('SECRET_KEY')
     WTF_CSRF_ENABLED = True
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or \
-        'sqlite:///' + os.path.join(basedir, 'data.sqlite')
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
 
 config = {
     'development': DevelopmentConfig,
